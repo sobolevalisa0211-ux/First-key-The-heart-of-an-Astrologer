@@ -151,16 +151,31 @@
         }
         .fixed-nav .nav-links {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
             gap: 1.5rem;
             margin-top: 0.8rem;
             border: none;
             padding: 0.5rem 1rem;
             border-radius: 60px;
-            width: fit-content;
+            width: 100%;
             margin-left: auto;
             margin-right: auto;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+        }
+        .fixed-nav .nav-links::-webkit-scrollbar {
+            height: 3px;
+        }
+        .fixed-nav .nav-links::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        .fixed-nav .nav-links::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
         }
         .fixed-nav .nav-link {
             font-size: 1rem;
@@ -169,6 +184,7 @@
             padding: 0.4rem 1rem;
             border-radius: 40px;
             transition: 0.2s;
+            white-space: nowrap;
         }
         .toggle-label {
             font-size: 0.9rem;
@@ -217,6 +233,66 @@
         }
         input:checked + .slider {
             background-color: #3a2c28;
+        }
+
+        /* ========= МОБИЛЬНЫЕ ПРАВКИ (ГОРИЗОНТАЛЬНАЯ ПРОКРУТКА) ========= */
+        @media (max-width: 900px) {
+            .fixed-nav {
+                padding: 0.6rem 1rem;
+            }
+            .fixed-nav .title-area h1 {
+                font-size: 1.5rem;
+            }
+            .fixed-nav .title-area p {
+                font-size: 0.7rem;
+            }
+            .fixed-nav .nav-links {
+                gap: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+            .fixed-nav .nav-link {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.7rem;
+            }
+            .toggle-label {
+                font-size: 0.7rem;
+            }
+            .toggle-switch {
+                padding: 0.2rem 0.7rem;
+            }
+            .switch {
+                width: 42px;
+                height: 22px;
+            }
+            .slider:before {
+                height: 16px;
+                width: 16px;
+                font-size: 0.7rem;
+            }
+            input:checked + .slider:before {
+                transform: translateX(20px);
+            }
+            .section-header h2 {
+                font-size: 1.6rem;
+            }
+            .card-name {
+                font-size: 1.3rem;
+            }
+            .artifact-card.card-tarot::after,
+            .artifact-card.card-star-keys::after {
+                width: 40px;
+                height: 40px;
+                top: 12px;
+                left: 12px;
+            }
+            .artifact-card.card-tarot .artifact-name,
+            .artifact-card.card-star-keys .artifact-name {
+                padding-left: 60px;
+            }
+            .royal-nav-btn, .art-nav-btn, .subnav-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.8rem;
+            }
         }
 
         .archive-container {
@@ -734,9 +810,6 @@
         }
 
         @media (max-width: 700px) {
-            .fixed-nav { padding: 0.6rem 1rem; }
-            .fixed-nav .title-area h1 { font-size: 1.6rem; }
-            .nav-links { gap: 0.5rem; }
             .archive-container { padding: 0 1rem 2rem; }
             body, body.light-theme, body.dark-theme { font-size: 16px; }
             .card-name { font-size: 1.5rem; }
